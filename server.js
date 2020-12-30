@@ -12,20 +12,21 @@ const info = require('./info.alert.js')
 //the name must match the channel url
     //example: twitch.tv/channel_name
     //channels = ["channel_name"]
-var channels = ["agathinha00", "Ar7hurz1nh0", "Felps", "yueko"]
+const channels = ["agathinha00", "Ar7hurz1nh0", "Felps", "yueko"]
 
 //change here what messages you want to display
-var msgs = {
+const msgs = {
     message: "@here",
     liveMessage: "Streaming",
     category: "Category",
     startedAt: "Started at",
-    botWatermark: "AgaBot | Quantum Labs"
+    botWatermark: "AgaBot | Quantum Labs",
+    botOn: "🤖 AgaBot ativado"
 }
 
 //configs
 
-var config = {
+const config = {
     useConsole: true, //Use console webhook (configure in .env)
     verbose: false, //Send a message for Webhook Console with every proccess (requires useConsole = true)
     dontRenotify: true, //Do not send other notfication if app restarts
@@ -166,6 +167,7 @@ async function getToken() {
                                             if (config.verbose && config.useConsole) fetch(process.env.CONSOLE, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"content": `${channels[uID]} is still online`})})
                                         }
                                         else {
+                                            u[uID].isLive = b.data[i].is_live
                                             if (config.verbose && config.useConsole) fetch(process.env.CONSOLE, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"content": `${channels[uID]} is offline`})})
                                             info(colors.red(`${channels[uID]} is offline`))
                                         }
@@ -193,7 +195,7 @@ async function getToken() {
 }
 
 try {
-    if (config.useConsole) fetch(process.env.CONSOLE, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"content": "🤖 AgaBot ativado"})})
+    if (config.useConsole) fetch(process.env.CONSOLE, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"content": msgs.botOn})})
     if (config.verbose && config.useConsole) fetch(process.env.CONSOLE, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({"content": "Verbose on 📜"})})
 }
 catch (e) {
