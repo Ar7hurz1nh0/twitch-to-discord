@@ -1,0 +1,25 @@
+{
+  "name": "agabot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ar7hurz1nh0/twitch-to-discord.git"
+  },
+  "author": "Ar7hurz1nh0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ar7hurz1nh0/twitch-to-discord/issues"
+  },
+  "homepage": "https://github.com/Ar7hurz1nh0/twitch-to-discord#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6"
+  }
+}
